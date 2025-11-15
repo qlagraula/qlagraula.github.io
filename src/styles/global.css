@@ -77,26 +77,24 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+.astro-code,
+.astro-code span {
+  background-color: var(--color-base-100);
+  color: var(--shiki-light);
+}
+
 html:not([data-theme]) {
   @media (prefers-color-scheme: dark) {
     .astro-code,
     .astro-code span {
-      color: var(--shiki-dark) !important;
-      background-color: var(--shiki-dark-bg) !important;
-      font-style: var(--shiki-dark-font-style) !important;
-      font-weight: var(--shiki-dark-font-weight) !important;
-      text-decoration: var(--shiki-dark-text-decoration) !important;
+      color: var(--shiki-dark);
     }
   }
 }
 
 html[data-theme='dark'] .astro-code,
 html[data-theme='dark'] .astro-code span {
-  color: var(--shiki-dark) !important;
-  background-color: var(--shiki-dark-bg) !important;
-  font-style: var(--shiki-dark-font-style) !important;
-  font-weight: var(--shiki-dark-font-weight) !important;
-  text-decoration: var(--shiki-dark-text-decoration) !important;
+  color: var(--shiki-dark);
 }
 
 footer #wcb.carbonbadge {
@@ -110,4 +108,81 @@ footer #wcb #wcb_g {
 
 footer #wcb #wcb_a {
   color: var(--color-base-300);
+}
+
+pre {
+  padding: 1em;
+  max-width: 100%;
+  overflow-x: auto;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.line {
+  display: inline-block;
+  width: 100%;
+}
+
+/* transformerNotationDiff */
+.line.diff.add {
+  background-color: #0505;
+}
+.line.diff.remove {
+  background-color: #8005;
+}
+
+.line.diff.add:before {
+  content: '+ ';
+  opacity: 0.6;
+}
+.line.diff.remove:before {
+  content: '- ';
+  opacity: 0.6;
+}
+
+/* transformerNotationHighlight */
+.line.highlighted {
+  background-color: #85858556;
+}
+
+/* transformerNotationWordHighlight */
+.highlighted-word.highlighted-word {
+  background-color: #85858556;
+}
+
+/* transformerNotationFocus */
+.has-focused .line {
+  filter: blur(0.1rem);
+}
+.has-focused .focused {
+  filter: blur(0);
+}
+
+/* transformerNotationErrorLevel */
+.line.highlighted.error {
+  background-color: #72000075;
+}
+.line.highlighted.warning {
+  background-color: #964b0075;
+}
+
+/* transformerRenderWhitespace */
+.tab::before {
+  content: '⇥';
+  position: absolute;
+  opacity: 0.6;
+}
+
+.space::before {
+  content: '.';
+  position: absolute;
+  opacity: 0.6;
+}
+
+.line.highlighted span,
+.line.highlighted.warning span,
+.line.highlighted.error span,
+.line.diff.add span,
+.line.diff.remove span {
+  background-color: transparent;
 }
