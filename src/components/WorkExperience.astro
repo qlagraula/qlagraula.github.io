@@ -1,12 +1,12 @@
 ---
-import { render, type CollectionEntry } from 'astro:content'
+import { render, type CollectionEntry } from 'astro:content';
 
 interface Props {
-  entry: CollectionEntry<'jobs'>
+  entry: CollectionEntry<'jobs'>;
 }
 
-const { entry } = Astro.props
-const { Content } = await render(entry)
+const { entry } = Astro.props;
+const { Content } = await render(entry);
 ---
 
 <li class="flex flex-col gap-4">

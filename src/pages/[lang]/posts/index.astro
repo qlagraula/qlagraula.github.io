@@ -1,28 +1,28 @@
 ---
-import { getCollection, getEntry } from 'astro:content'
-import Author from '#components/Author.astro'
+import { getCollection, getEntry } from 'astro:content';
+import Author from '#components/Author.astro';
 
-import BaseLayout from '#layouts/BaseLayout.astro'
-import { DEFAULT_CONFIGURATION } from '#lib/constants'
-import PostPreview from '#components/PostPreview.astro'
-import { languages } from '#i18n/ui'
-import { useTranslations } from '#i18n/utils'
-import { includeDraft } from '#lib/utils'
+import BaseLayout from '#layouts/BaseLayout.astro';
+import { DEFAULT_CONFIGURATION } from '#lib/constants';
+import PostPreview from '#components/PostPreview.astro';
+import { languages } from '#i18n/ui';
+import { useTranslations } from '#i18n/utils';
+import { includeDraft } from '#lib/utils';
 
 export async function getStaticPaths() {
-  return languages.map((lang) => ({ params: { lang } }))
+  return languages.map((lang) => ({ params: { lang } }));
 }
 
-const { lang } = Astro.params
-const t = useTranslations(lang)
+const { lang } = Astro.params;
+const t = useTranslations(lang);
 
-const entry = await getEntry('pages', `posts/${lang}`)
-const homepage = await getEntry('pages', `homepage/${lang}`)
+const entry = await getEntry('pages', `posts/${lang}`);
+const homepage = await getEntry('pages', `homepage/${lang}`);
 
 const posts = await getCollection(
   'posts',
-  (post) => includeDraft(post.data.draft) && post.slug.includes(lang)
-)
+  (post) => includeDraft(post.data.draft) && post.slug.includes(lang),
+);
 ---
 
 <BaseLayout seo={entry?.data.seo}>

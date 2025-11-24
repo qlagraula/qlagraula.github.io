@@ -1,15 +1,15 @@
 ---
-import { getCollection } from 'astro:content'
+import { getCollection } from 'astro:content';
 
-import WorkExperience from '#components/WorkExperience.astro'
-import { sortJobsByDate } from '#lib/utils'
-import { getLangFromUrl, useTranslations } from '#i18n/utils'
+import WorkExperience from '#components/WorkExperience.astro';
+import { sortJobsByDate } from '#lib/utils';
+import { getLangFromUrl, useTranslations } from '#i18n/utils';
 
-const lang = getLangFromUrl(Astro.url)
-const jobs = await getCollection('jobs', ({ id }) => id.startsWith(lang))
-const t = useTranslations(lang)
+const lang = getLangFromUrl(Astro.url);
+const jobs = await getCollection('jobs', ({ id }) => id.startsWith(lang));
+const t = useTranslations(lang);
 
-const sortedJobs = sortJobsByDate(jobs)
+const sortedJobs = sortJobsByDate(jobs);
 ---
 
 {

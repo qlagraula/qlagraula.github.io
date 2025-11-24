@@ -1,20 +1,20 @@
 ---
-import SwitchTheme from '#components/SwitchTheme'
-import SwitchLang from '#components/SwitchLang'
+import SwitchTheme from '#components/SwitchTheme';
+import SwitchLang from '#components/SwitchLang';
 
-import { getLangFromUrl, useTranslations } from '#i18n/utils'
-import { getCollection } from 'astro:content'
-import { getRelativeLocaleUrl } from 'astro:i18n'
-import { includeDraft } from '#lib/utils'
+import { getLangFromUrl, useTranslations } from '#i18n/utils';
+import { getCollection } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { includeDraft } from '#lib/utils';
 
-const pathname = Astro.url.pathname
-const lang = getLangFromUrl(Astro.url)
-const t = useTranslations(lang)
+const pathname = Astro.url.pathname;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const posts = await getCollection(
   'posts',
-  (post) => includeDraft(post.data.draft) && post.slug.includes(lang)
-)
+  (post) => includeDraft(post.data.draft) && post.slug.includes(lang),
+);
 
 const LINKS = [
   {
@@ -28,12 +28,12 @@ const LINKS = [
     active: pathname.startsWith(getRelativeLocaleUrl(lang, 'posts')),
   },
 ] as const satisfies {
-  label: string
-  href: string
-  active: boolean
-}[]
+  label: string;
+  href: string;
+  active: boolean;
+}[];
 
-const showLinks = posts.length > 0
+const showLinks = posts.length > 0;
 ---
 
 <header>

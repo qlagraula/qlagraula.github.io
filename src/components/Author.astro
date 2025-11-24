@@ -1,16 +1,16 @@
 ---
-import { Image } from 'astro:assets'
-import { getImage } from 'astro:assets'
-import type { AuthorInfo } from '#lib/constants'
-import { getLangFromUrl, useTranslations } from '#i18n/utils'
+import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
+import type { AuthorInfo } from '#lib/constants';
+import { getLangFromUrl, useTranslations } from '#i18n/utils';
 
 interface Props extends AuthorInfo {}
-const { avatar, name, headline } = Astro.props
+const { avatar, name, headline } = Astro.props;
 
-const lang = getLangFromUrl(Astro.url)
-const t = useTranslations(lang)
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
-const image = await getImage({ src: avatar, format: 'avif' })
+const image = await getImage({ src: avatar, format: 'avif' });
 ---
 
 <div>

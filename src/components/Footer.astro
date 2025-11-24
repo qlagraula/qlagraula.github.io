@@ -1,11 +1,11 @@
 ---
-import { getEntry } from 'astro:content'
+import { getEntry } from 'astro:content';
 
 const [linkedIn, github, email] = await Promise.all([
   getEntry('links', 'linkedin'),
   getEntry('links', 'github'),
   getEntry('links', 'email'),
-])
+]);
 ---
 
 <footer

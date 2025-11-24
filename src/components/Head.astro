@@ -1,21 +1,21 @@
 ---
-import { getImage, Font } from 'astro:assets'
-import type { Seo } from '#lib/constants'
-import { DEFAULT_CONFIGURATION } from '#lib/constants'
-import { generateAbsoluteUrl } from '#lib/utils'
+import { getImage, Font } from 'astro:assets';
+import type { Seo } from '#lib/constants';
+import { DEFAULT_CONFIGURATION } from '#lib/constants';
+import { generateAbsoluteUrl } from '#lib/utils';
 
 interface Props {
-  seo?: Seo
+  seo?: Seo;
 }
 
-const defaultSeo = DEFAULT_CONFIGURATION.seo
-const { seo } = Astro.props
+const defaultSeo = DEFAULT_CONFIGURATION.seo;
+const { seo } = Astro.props;
 
 const image = await getImage({
   src: seo?.image || defaultSeo.image,
   format: 'jpg',
-})
-const seoImage = generateAbsoluteUrl(image.src)
+});
+const seoImage = generateAbsoluteUrl(image.src);
 ---
 
 <head>
@@ -63,15 +63,20 @@ const seoImage = generateAbsoluteUrl(image.src)
         typeof localStorage !== 'undefined' &&
         localStorage.getItem('theme')
       ) {
-        return localStorage.getItem('theme')
+        return localStorage.getItem('theme');
       }
-    })()
+    })();
 
-    if (theme) document.documentElement.setAttribute('data-theme', theme)
+    if (theme) document.documentElement.setAttribute('data-theme', theme);
   </script>
-  <script
-    defer
-    src="https://umami-proxy.quentin-lagraula.workers.dev/script.js"
-    data-website-id="91b6b620-6a48-4041-8012-be093da411f3"></script>
+  {
+    import.meta.env.PROD && (
+      <script
+        defer
+        src="https://umami-proxy.quentin-lagraula.workers.dev/script.js"
+        data-website-id="91b6b620-6a48-4041-8012-be093da411f3"
+      />
+    )
+  }
   <slot />
 </head>

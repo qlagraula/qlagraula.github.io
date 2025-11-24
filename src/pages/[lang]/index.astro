@@ -1,26 +1,26 @@
 ---
-import BaseLayout from '#layouts/BaseLayout.astro'
-import Author from '#components/Author.astro'
-import { DEFAULT_CONFIGURATION } from '#lib/constants'
-import Contact from '#components/Contact.astro'
-import Experience from '#components/Experience.astro'
-import { languages } from '#i18n/ui'
-import { useTranslations } from '#i18n/utils'
-import { getEntry, render } from 'astro:content'
+import BaseLayout from '#layouts/BaseLayout.astro';
+import Author from '#components/Author.astro';
+import { DEFAULT_CONFIGURATION } from '#lib/constants';
+import Contact from '#components/Contact.astro';
+import Experience from '#components/Experience.astro';
+import { languages } from '#i18n/ui';
+import { useTranslations } from '#i18n/utils';
+import { getEntry, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  return languages.map((lang) => ({ params: { lang } }))
+  return languages.map((lang) => ({ params: { lang } }));
 }
 
-const { lang } = Astro.params
-const t = useTranslations(lang)
+const { lang } = Astro.params;
+const t = useTranslations(lang);
 
-const entry = await getEntry('pages', `homepage/${lang}`)
+const entry = await getEntry('pages', `homepage/${lang}`);
 
 if (!entry) {
-  throw new Error('Homepage entry not found')
+  throw new Error('Homepage entry not found');
 }
-const { Content } = await render(entry)
+const { Content } = await render(entry);
 ---
 
 <BaseLayout>
