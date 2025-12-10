@@ -7,6 +7,7 @@ import Experience from '#components/Experience.astro';
 import { languages } from '#i18n/ui';
 import { useTranslations } from '#i18n/utils';
 import { getEntry, render } from 'astro:content';
+import Skills from '#components/Skills.astro';
 
 export async function getStaticPaths() {
   return languages.map((lang) => ({ params: { lang } }));
@@ -37,5 +38,6 @@ const { Content } = await render(entry);
     <Content />
   </section>
   <Contact />
+  <Skills />
   <Experience />
 </BaseLayout>

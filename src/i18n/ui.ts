@@ -8,6 +8,7 @@ export const ui = {
   en: {
     about: 'About',
     contact: 'Contact',
+    skills: 'Skills',
     'experience.title': 'Work Experience',
     '404.back': 'Back Home',
     'theme.switch': ({ theme }: { theme: string | null }) =>
@@ -23,6 +24,7 @@ export const ui = {
   fr: {
     about: 'À propos',
     contact: 'Contact',
+    skills: 'Compétences',
     'experience.title': 'Expérience',
     '404.back': "Retour à l'accueil",
     'theme.switch': ({ theme }: { theme: string | null }) =>

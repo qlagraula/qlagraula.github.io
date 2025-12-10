@@ -38,6 +38,12 @@ const linkCollection = defineCollection({
   }),
 });
 
+const skillCollection = defineCollection({
+  schema: z.object({
+    label: z.string(),
+  }),
+});
+
 const jobCollection = defineCollection({
   schema: z.object({
     title: z.string(),
@@ -46,6 +52,7 @@ const jobCollection = defineCollection({
     location: z.string(),
     from: z.number(),
     to: z.number().or(z.enum(['Now'])),
+    duration: z.string(),
     url: z.string(),
   }),
 });
@@ -66,4 +73,5 @@ export const collections = {
   links: linkCollection,
   jobs: jobCollection,
   posts: postCollection,
+  skills: skillCollection,
 };

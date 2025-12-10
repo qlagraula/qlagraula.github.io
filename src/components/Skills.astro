@@ -1,0 +1,35 @@
+---
+import { getLangFromUrl, useTranslations } from '#i18n/utils';
+import { getCollection } from 'astro:content';
+import { sortSkillsByLabel } from '#lib/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const skills = await getCollection('skills', ({ id }) => id.startsWith(lang));
+
+const sortedSkills = sortSkillsByLabel(skills);
+---
+
+{
+  sortedSkills.length > 0 && (
+    <section>
+      <h2>{t('skills')}</h2>
+      <ul class="p-0 flex flex-col gap-4 ">
+        {skills.map(async (skill) => {
+          const { Content } = await skill.render();
+          return (
+            <li class="flex not-prose max-md:flex-col items-baseline">
+              <span class="md:min-w-40 opacity-90 text-sm">
+                {skill.data.label}
+              </span>
+              <span class="text-base-content">
+                <Content />
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  )
+}

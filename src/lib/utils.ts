@@ -31,3 +31,7 @@ export const sortJobsByDate = (jobs: CollectionEntry<'jobs'>[]) => {
     return nextEnd - currentEnd || next.data.from - current.data.from;
   });
 };
+
+export const sortSkillsByLabel = (skills: CollectionEntry<'skills'>[]) => {
+  return skills.sort((a, b) => a.id.localeCompare(b.id));
+};
